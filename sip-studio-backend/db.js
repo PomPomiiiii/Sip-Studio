@@ -1,21 +1,8 @@
-const sql = require('mssql')
+const { Pool } = require('pg')
 
-const config = {
-  user: 'sa',
-  password: 'sip_studio_13',
-  server: '127.0.0.1',
-  port: 51181,
-  database: 'SipStudio',
-  options: {
-    encrypt: false,
-    trustServerCertificate: true,
-    instanceName: ''
-  }
-}
+const pool = new Pool({
+  connectionString: 'postgresql://postgres.kozpgpkieemcncmkxjfq:SipStudio2026!@aws-1-ap-southeast-2.pooler.supabase.com:5432/postgres',
+  ssl: { rejectUnauthorized: false }
+})
 
-const poolPromise = new sql.ConnectionPool(config)
-  .connect()
-  .then(pool => { console.log('✅ Connected to SQL Server'); return pool })
-  .catch(err => console.error('❌ DB connection failed:', err))
-
-module.exports = { sql, poolPromise }
+module.exports = pool
