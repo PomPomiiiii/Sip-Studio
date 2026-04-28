@@ -39,7 +39,7 @@ function DrinkBuilder({ onBack }) {
   const placeOrder = async () => {
     setOrdering(true)
     try {
-      const res = await fetch('http://localhost:3001/api/orders', {
+      const res = await fetch('https://sip-studio-backend.onrender.com/api/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
